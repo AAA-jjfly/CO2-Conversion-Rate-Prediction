@@ -7,7 +7,7 @@ from io import BytesIO
 
 # 设置页面配置
 st.set_page_config(
-    page_title="碳转化率预测",
+    page_title="二氧化碳转化率预测",
     page_icon="🌿",
     layout="wide")
 
@@ -17,7 +17,7 @@ def load_model(model_name):
         return CatBoostRegressor().load_model('model-424-2000.cbm')
 
 #碳转化率预测界面
-st.subheader("碳转化率预测",divider="green")
+st.subheader("二氧化碳甲烷化反应的二氧化碳转化率预测",divider="green")
 model = load_model("none")
 #参数输入
 with st.form("user_input"):
@@ -80,7 +80,7 @@ if submitted and model:
         new_prediction = model.predict(data_frame)[0]
         st.success("预测完成！")
         st.subheader("预测结果", divider="green")
-        st.metric(label="碳转化率", value=f"{new_prediction:.2f}%")
+        st.metric(label="二氧化碳转化率", value=f"{new_prediction:.2f}%")
         #结果解读
     except Exception as e:
         st.error(f"预测失败：{str(e)}")
